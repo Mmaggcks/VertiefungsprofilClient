@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-private static UIManager _singelton;
+    //Making sure only one instance of this object exists
+    private static UIManager _singelton;
 
     public static UIManager Singleton {
         get => _singelton;
@@ -20,16 +21,19 @@ private static UIManager _singelton;
         }
     }
 
+    //These get set in the Editor
     [Header("Connect")]
     [SerializeField] private GameObject connectUI;
     [SerializeField] private InputField usernameField;
     [SerializeField] private InputField ipField;
     [SerializeField] private InputField portField;
 
+    //Set Instance
     private void Awake(){
         Singleton = this;
     }
 
+    //Disable menu when clicking on connect button and connect
     public void ConnectClicked() {
         usernameField.interactable = false;
         ipField.interactable = false;
@@ -38,6 +42,7 @@ private static UIManager _singelton;
         NetworkManager.Singleton.Connect(ipField.text, portField.text);
     }
 
+    //Return to Menu
     public void BackToMain() {
         usernameField.interactable = true;
         ipField.interactable = true;
@@ -45,6 +50,7 @@ private static UIManager _singelton;
         connectUI.SetActive(true);
     }
 
+    //Send entered name to the Server
     public void SendName() {
         Message message = Message.Create(MessageSendMode.reliable, (ushort)ClientToServerId.name);
         message.AddString(usernameField.text);
