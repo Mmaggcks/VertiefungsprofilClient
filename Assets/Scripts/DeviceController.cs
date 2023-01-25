@@ -15,18 +15,24 @@ public class DeviceController : MonoBehaviour
     private int lastScreenY;
 
     private bool firstSend = false;
-
+    int counter = 0;
     private void Start() {
         lastScreenX = Screen.width;
         lastScreenY = Screen.height;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
 
     private void FixedUpdate() {
         //If Client is connected to server
         if (NetworkManager.Singleton.isConnected) {
             //Send the Inputs
-            SendInput();
-            SendResolution();
+            if (counter >600)
+            {
+                SendInput();
+                SendResolution();
+            }
+            counter++;
         }
     }
 
