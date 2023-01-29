@@ -12,7 +12,9 @@ public enum ClientToServerId : ushort {
     input,
     resolution,
     mouseDown,
-    mouseUp
+    mouseUp,
+    //Test for the first button. Needs to be changed when more buttons sent data.
+    buttonTest
 }
 
 public class NetworkManager : MonoBehaviour

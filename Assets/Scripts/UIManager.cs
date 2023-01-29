@@ -28,6 +28,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private InputField ipField;
     [SerializeField] private InputField portField;
 
+    //menu that is shwon after connecting
+    [SerializeField] private GameObject firstMenu;
+
     //Set Instance
     private void Awake(){
         Singleton = this;
@@ -40,10 +43,15 @@ public class UIManager : MonoBehaviour
         portField.interactable = false;
         connectUI.SetActive(false);
         NetworkManager.Singleton.Connect(ipField.text, portField.text);
+        //Change to first state
+        firstMenu.SetActive(true);
     }
 
     //Return to Menu
     public void BackToMain() {
+        //Change state back to connecting
+        firstMenu.SetActive(false);
+
         usernameField.interactable = true;
         ipField.interactable = true;
         portField.interactable = true;
@@ -54,6 +62,13 @@ public class UIManager : MonoBehaviour
     public void SendName() {
         Message message = Message.Create(MessageSendMode.reliable, (ushort)ClientToServerId.name);
         message.AddString(usernameField.text);
+        NetworkManager.Singleton.Client.Send(message);
+    }
+
+    //Is sent, when a button is pressed. Assignment needs to be made in Editor.
+    public void SendButtonData(){
+        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.buttonTest);
+        message.AddString("First Button pressed!");
         NetworkManager.Singleton.Client.Send(message);
     }
 }
