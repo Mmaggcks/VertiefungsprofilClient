@@ -2,10 +2,11 @@ using RiptideNetworking;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class DeviceController : MonoBehaviour
 {
-
+    [SerializeField]
+    RectTransform rect;
     private float lastSentX = 0;
 
     private float lastSentY = 0;
@@ -20,12 +21,16 @@ public class DeviceController : MonoBehaviour
         lastScreenX = Screen.width;
         lastScreenY = Screen.height;
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
     }
 
-    private void FixedUpdate() {
-        //If Client is connected to server
-        if (NetworkManager.Singleton.isConnected) {
+    private void Update() {
+        //If Client is connected to server and not clicking button
+
+        Vector2 localMousePosition = rect.InverseTransformPoint(Input.mousePosition);
+        rect.gameObject.SetActive(NetworkManager.Singleton.isConnected);
+
+        if (NetworkManager.Singleton.isConnected && rect.rect.Contains(localMousePosition)) {
+
             //Send the Inputs
             if (Input.GetMouseButtonDown(0)) SendMouseDown();
             if (Input.GetMouseButtonUp(0)) SendMouseUp();

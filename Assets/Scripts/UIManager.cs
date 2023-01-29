@@ -66,8 +66,34 @@ public class UIManager : MonoBehaviour
     }
 
     //Is sent, when a button is pressed. Assignment needs to be made in Editor.
-    public void SendButtonData(){
-        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.buttonTest);
+    public void SendClearButtonData(){
+        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.clear);
+        message.AddString("First Button pressed!");
+        NetworkManager.Singleton.Client.Send(message);
+    }
+    //Is sent, when a button is pressed. Assignment needs to be made in Editor.
+    public void SendUndoButtonData(){
+        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.undo);
+        message.AddString("First Button pressed!");
+        NetworkManager.Singleton.Client.Send(message);
+    }
+    public void SendYellowButtonData(){
+        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.yellow);
+        message.AddString("First Button pressed!");
+        NetworkManager.Singleton.Client.Send(message);
+    }
+    public void SendRedButtonData(){
+        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.red);
+        message.AddString("First Button pressed!");
+        NetworkManager.Singleton.Client.Send(message);
+    }
+    public void SendGreenButtonData(){
+        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.green);
+        message.AddString("First Button pressed!");
+        NetworkManager.Singleton.Client.Send(message);
+    }
+    public void SendBlueButtonData(){
+        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.blue);
         message.AddString("First Button pressed!");
         NetworkManager.Singleton.Client.Send(message);
     }
