@@ -64,47 +64,30 @@ public class UIManager : MonoBehaviour
         message.AddString(usernameField.text);
         NetworkManager.Singleton.Client.Send(message);
     }
-
     //Is sent, when a button is pressed. Assignment needs to be made in Editor.
     public void SendClearButtonData(){
         Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.clear);
-        message.AddString("1");
         NetworkManager.Singleton.Client.Send(message);
     }
     //Is sent, when a button is pressed. Assignment needs to be made in Editor.
     public void SendSmolButtonData(){
         Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.smol);
-        message.AddString("2");
         NetworkManager.Singleton.Client.Send(message);
     }
     public void SendMiddleButtonData(){
         Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.middle);
-        message.AddString("3");
         NetworkManager.Singleton.Client.Send(message);
     }
     public void SendBigButtonData(){
         Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.big);
-        message.AddString("4");
         NetworkManager.Singleton.Client.Send(message);
     }
     public void SendPreviousButtonData(){
         Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.previous);
-        message.AddString("5");
-        NetworkManager.Singleton.Client.Send(message);
-    }
-    public void SendStartButtonData(){
-        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.start);
-        message.AddString("6");
-        NetworkManager.Singleton.Client.Send(message);
-    }
-    public void SendStopButtonData(){
-        Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.stop);
-        message.AddString("7");
         NetworkManager.Singleton.Client.Send(message);
     }
     public void SendNextButtonData(){
         Message message = Message.Create(MessageSendMode.reliable, (ushort) ClientToServerId.next);
-        message.AddString("8");
         NetworkManager.Singleton.Client.Send(message);
     }
 }

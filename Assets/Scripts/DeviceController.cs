@@ -16,7 +16,7 @@ public class DeviceController : MonoBehaviour
     private int lastScreenY;
 
     private bool firstSend = false;
-    int counter = 0;
+
     private void Start() {
         lastScreenX = Screen.width;
         lastScreenY = Screen.height;

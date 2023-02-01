@@ -18,8 +18,6 @@ public enum ClientToServerId : ushort {
     middle,
     big,
     previous,
-    start,
-    stop,
     next
 }
 
